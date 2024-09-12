@@ -15,11 +15,31 @@ namespace OOP_2425_BaseCode
 
             DisplayArray(list);
 
-            for (int x = 0; x < 100; x++)
-            {
-                list = AddToArray(list, rnd.Next(20));
-                DisplayArray(list);
-            }
+            //for (int x = 0; x < 100; x++)
+            //{
+            //    list = AddToArray(list, rnd.Next(20));
+            //    DisplayArray(list);
+            //}
+
+            list = AddToArray(list, 1);
+            list = AddToArray(list, 2);
+            list = AddToArray(list, 1);
+            list = AddToArray(list, 1);
+            list = AddToArray(list, 5);
+            list = AddToArray(list, 1);
+            list = AddToArray(list, 1);
+            list = AddToArray(list, 1);
+            list = AddToArray(list, 1);
+            list = AddToArray(list, 1);
+
+            DisplayArray(list);
+
+            Console.WriteLine(Contains(list,5));
+
+            //list = RemoveAt(list, 4);
+            list = Remove(list, 6);
+
+            DisplayArray(list);
 
             Console.ReadKey();
         }
@@ -56,5 +76,67 @@ namespace OOP_2425_BaseCode
 
             return newArray;
         }
+
+        #region The four
+        static bool Contains(int[] array, int value)
+        {
+            foreach (int i in array)
+            {
+                if (i == value)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        static int Find(int[] array, int value)
+        {
+            if (Contains(array, value))
+            {
+                for (int x = 0; x < array.Length; x++)
+                {
+                    if (array[x] == value)
+                    {
+                        return x;
+                    }
+                }
+            }
+
+            return -1;
+        }
+
+        static int[] RemoveAt(int[] array, int index)
+        {
+            int[] newArray = { };
+            bool skip = false;
+
+            if (index > -1)
+                newArray = new int[array.Length - 1];
+            else
+                newArray = array;
+
+            if (array.Length > newArray.Length)
+            {
+                for (int x = 0; x < newArray.Length; x++)
+                {
+                    if (x == index)
+                        skip = true;
+
+                    if (skip)
+                        newArray[x] = array[x + 1];
+                    else
+                        newArray[x] = array[x];
+                }
+            }
+
+            return newArray;
+        }
+
+        static int[] Remove(int[] array, int value)
+        {
+            return RemoveAt(array, Find(array, value));
+        } 
+        #endregion
     }
 }

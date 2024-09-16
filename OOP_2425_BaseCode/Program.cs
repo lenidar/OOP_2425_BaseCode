@@ -36,8 +36,8 @@ namespace OOP_2425_BaseCode
 
             Console.WriteLine(Contains(list,5));
 
-            //list = RemoveAt(list, 4);
-            list = Remove(list, 6);
+            list = RemoveAt(list, 4);
+            //list = Remove(list, 6);
 
             DisplayArray(list);
 
@@ -92,16 +92,13 @@ namespace OOP_2425_BaseCode
 
         static int Find(int[] array, int value)
         {
-            if (Contains(array, value))
+            for (int x = 0; x < array.Length; x++)
             {
-                for (int x = 0; x < array.Length; x++)
+                if (array[x] == value)
                 {
-                    if (array[x] == value)
-                    {
-                        return x;
-                    }
+                    return x;
                 }
-            }
+            }            
 
             return -1;
         }
@@ -111,7 +108,7 @@ namespace OOP_2425_BaseCode
             int[] newArray = { };
             bool skip = false;
 
-            if (index > -1)
+            if (index > -1 && index < array.Length)
                 newArray = new int[array.Length - 1];
             else
                 newArray = array;
@@ -135,7 +132,10 @@ namespace OOP_2425_BaseCode
 
         static int[] Remove(int[] array, int value)
         {
-            return RemoveAt(array, Find(array, value));
+            int indexToRemove = Find(array, value);
+            return RemoveAt(array, indexToRemove);
+
+            //return RemoveAt(array, Find(array, value));
         } 
         #endregion
     }

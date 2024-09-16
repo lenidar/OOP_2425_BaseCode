@@ -132,10 +132,10 @@ namespace OOP_2425_BaseCode
 
         static int[] Remove(int[] array, int value)
         {
-            int indexToRemove = Find(array, value);
-            return RemoveAt(array, indexToRemove);
+            //int indexToRemove = Find(array, value);
+            //return RemoveAt(array, indexToRemove);
 
-            //return RemoveAt(array, Find(array, value));
+            return RemoveAt(array, Find(array, value));
         } 
         #endregion
     }
